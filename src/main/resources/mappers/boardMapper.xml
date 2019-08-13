@@ -1,4 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.board.web.board.boardMapper">
+	
+	<!-- 게시글 목록 출력 -->
+	<select id="getBoardList" resultType="com.board.web.board.model.BoardVO">
+		SELECT
+			BID, CATE_CD, TITLE, CONTENT, TAG, VIEW_CNT, REG_ID, REG_DT, EDIT_DT
+		FROM
+			TB_BOARD
+	</select>
+	
+	<!-- 게시글 내용 출력 -->
+	<select id="getBoardContent" resultType="com.board.web.board.model.BoardVO" parameterType="com.board.web.board.model.BoardVO">
+		SELECT
+			BID, CATE_CD, TITLE, CONTENT, TAG, VIEW_CNT, REG_ID, REG_DT, EDIT_DT
+		FROM
+			TB_BOARD
+		WHERE
+			BID = #{bid}	
+	</select>
+	
+	<!-- 게시글 입력 -->
+	<insert id="insertBoard" parameterType="com.board.web.board.model.BoardVO">
+		INSERT INTO TB_BOARD (CATE_CD, TITLE, CONTENT, TAG, VIEW_CNT, REG_ID, REG_DT, EDIT_DT)
+		VALUES (#{cate_cd}, #{title}, #{content}, #{tag}, 0, #{reg_id}, now(), now())
+	</insert>
+	
+	<!-- 게시글 업데이트 -->
+	<update id="updateBoard" parameterType="com.board.web.board.model.BoardVO">
+		UPDATE TB_BOARD SET
+			CATE_CD = #{cate_cd}, TITLE = #{title}, CONTENT = #{content}, TAG = #{tag}, EDIT_DT = now()
+		WHERE
+			BID = ${bid}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM TB_BOARD
+		WHERE BID = #{bid}
+	</delete>
+	
+	<!-- 게시글 조회수 업데이트 -->	
+	<update id="updateViewCnt" parameterType="com.board.web.board.model.BoardVO">
+		UPDATE TB_BOARD SET
+			VIEW_CNT = VIEW_CNT + 1
+		WHERE
+			BID = #{bid}	
+	</update>
+	
 </mapper>
