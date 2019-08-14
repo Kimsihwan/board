@@ -34,6 +34,13 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
+		<!-- log4 -->
+		<dependency>
+			<groupId>org.bgee.log4jdbc-log4j2</groupId>
+			<artifactId>log4jdbc-log4j2-jdbc4</artifactId>
+			<version>1.16</version>
+		</dependency>
+		
 		<!-- lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -41,7 +48,7 @@
 			<version>1.18.8</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- mysql -->
 		<dependency>
 			<groupId>mysql</groupId>
