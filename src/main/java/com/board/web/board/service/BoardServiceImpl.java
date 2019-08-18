@@ -12,9 +12,16 @@ public class BoardServiceImpl implements BoardService {
   @Autowired
   private BoardDAO boardDAO;
 
+  // 게시글 리스트 조회
   @Override
   public List<BoardVO> getBoardList() throws Exception {
     return boardDAO.getBoardList();
+  }
+
+  // 게시글 입력
+  @Override
+  public void insertBoard(BoardVO boardVO) throws Exception {
+    boardDAO.insertBoard(boardVO);
   }
 
 }
